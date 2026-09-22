@@ -8,6 +8,6 @@ class Car(models.Model):
     per_day_price = models.IntegerField()
     per_hour_price = models.IntegerField()
     company_name = models.CharField(max_length=100)
-    img = models.ImageField(upload_to='cars\image')
+    img = models.ImageField(upload_to='cars/image')
     is_published = models.BooleanField(default=False)
 # Create your models here.
