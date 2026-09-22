@@ -1,0 +1,143 @@
+{% extends 'customerbase.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+	<div class="page-inner">
+		<div class="page-header">
+			<h3 class="fw-bold mb-3">Car</h3>
+			<ul class="breadcrumbs mb-3">
+				<li class="nav-home">
+					<a href="/cusdash/cusindex/">
+						<i class="fa-solid fa-house" style="color:green"></i>
+					</a>
+				</li>
+				<li class="separator">
+					<i class="fa-solid fa-arrow-right" style="font-size:15px;"></i>
+				</li>
+				<li class="nav-item">
+					<a href="#">Car</a>
+				</li>
+				<li class="separator">
+					<i class="fa-solid fa-arrow-right" style="font-size:15px;"></i>
+				</li>
+				<li class="nav-item">
+					<a href="#">Add Car</a>
+				</li>
+			</ul>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card">
+					<div class="card-header">
+						<h4 class="card-title">Add Car</h4>
+					</div>
+					<form method="post" enctype="multipart/form-data">
+									{% csrf_token %}
+								<div class="row">
+									<div class="col-md-6">
+											<div class="card-header">
+												<h4 class="card-title">Car Name:</h4>
+											</div>
+											<div class="card-body">
+												<p class="demo">
+													<input type="text" name="car_name" style="font-size:20px;" class="form-control"  placeholder="Car name">
+												</p>
+											</div>
+									</div>
+									<div class="col-md-6">
+											<div class="card-header">
+												<h4 class="card-title">Car Company Name:</h4>
+											</div>
+											<div class="card-body">
+												<p class="demo">
+													<input type="text" name="company" style="font-size:20px;" class="form-control"  placeholder="company name">
+												</p>
+											</div>
+									</div>
+<!--									<div class="col-md-6">-->
+<!--										<div class="card-header">-->
+<!--											<h4 class="card-title">Select Category</h4>-->
+<!--										</div>-->
+<!--										<div class="card-body">-->
+<!--											<select class="form-select form-control-lg" name="cat_name">-->
+<!--												<option>select category</option>-->
+<!--												{% for i in c %}-->
+<!--												<option name="cat_name" value="{{i.id}}">{{i.cat_name}}</option>-->
+<!--												{% endfor %}-->
+<!--											</select>-->
+<!--										</div>-->
+<!--									</div>-->
+
+									<div class="col-md-6">
+										<div class="card-header">
+											<h4 class="card-title">Car image:</h4>
+										</div>
+										<div class="card-body">
+											<p class="demo">
+												<input type="file" name="img" style="font-size:20px;" class="form-control">
+											</p>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="card-header">
+											<h4 class="card-title">Car Price(per day):</h4>
+										</div>
+										<div class="card-body">
+											<p class="demo">
+												<input type="text" name="pardprice" style="font-size:20px;" class="form-control"  placeholder="Car Price">
+											</p>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="card-header">
+											<h4 class="card-title">Car Price(per hour):</h4>
+										</div>
+										<div class="card-body">
+											<p class="demo">
+												<input type="text" name="parhprice" style="font-size:20px;" class="form-control"  placeholder="Car Price">
+											</p>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="card-header">
+											<h4 class="card-title">Location:</h4>
+										</div>
+										<div class="card-body">
+											<p class="demo">
+												<input type="text" name="location" style="font-size:20px;" class="form-control"  placeholder="Car Location">
+											</p>
+										</div>
+									</div>
+<!--									<div class="col-md-6">-->
+<!--										<div class="card-header">-->
+<!--											<h4 class="card-title">Old Price:</h4>-->
+<!--										</div>-->
+<!--										<div class="card-body">-->
+<!--											<p class="demo">-->
+<!--												<input type="text" name="oldprice" style="font-size:20px;" class="form-control"  placeholder="Product Price">-->
+<!--											</p>-->
+<!--										</div>-->
+<!--									</div>-->
+									<div class="col-md-6">
+										<div class="card-header">
+											<h4 class="card-title">Is Published:</h4>
+										</div>
+										<div class="card-body">
+											<p class="demo">
+<!--												<input type="checkbox" name="pub" style="width:20px;height:30px;">-->
+												<input type="text" name="pub" style="font-size:20px;" class="form-control" placeholder="True or Flase">
+											</p>
+										</div>
+									</div>
+<!--									<div class="col-md-6">-->
+										<button type="submit" class="btn btn-success" style="font-size:20px;margin-left:400px;">Save</button><br><br>
+<!--									</div>-->
+
+								</div><br>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

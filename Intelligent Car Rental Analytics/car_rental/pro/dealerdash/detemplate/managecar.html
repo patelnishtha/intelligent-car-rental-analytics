@@ -1,0 +1,69 @@
+{% extends 'adbase.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+	<div class="page-inner">
+		<div class="page-header">
+			<h3 class="fw-bold mb-3">Car</h3>
+			<ul class="breadcrumbs mb-3">
+				<li class="nav-home">
+					<a href="/dealerdash/adindex/">
+						<i class="fa-solid fa-house" style="color:green"></i>
+					</a>
+				</li>
+				<li class="separator">
+					<i class="fa-solid fa-arrow-right" style="font-size:15px;"></i>
+				</li>
+				<li class="nav-item">
+					<a href="#">Car</a>
+				</li>
+				<li class="separator">
+					<i class="fa-solid fa-arrow-right" style="font-size:15px;"></i>
+				</li>
+				<li class="nav-item">
+					<a href="#">Manage Car</a>
+				</li>
+			</ul>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card" >
+					<div class="card-header">
+						<h4 class="card-title">Manage Car</h4><br>
+					</div>
+
+					 <table class="table table-hover">
+						<thead class="table-success">
+						  <tr>
+							<th>Sr No.</th>
+							<th>Car Name</th>
+							<th>Price(Day)(Hour)</th>
+							<th>Company</th>
+							<th>Location</th>
+							<th>Car img</th>
+							<th>Status</th>
+							<th colspan="2">Action</th>
+						  </tr>
+						</thead>
+						<tbody>
+						{% for i in c2 %}
+						  <tr>
+							<td>{{forloop.counter}}</td>
+							<td>{{i.name}}</td>
+							<td>Day:{{i.per_day_price}} Hour:{{i.per_hour_price}}</td>
+							<td>{{i.company_name}}</td>
+							<td>{{i.location}}</td>
+							<td><img src="{{i.img.url}}" height="50px" width="80px"></td>
+							<td>{{i.is_published}}</td>
+							<td><a href="/dealerdash/manageedit/{{i.id}}/"><i class="fa-solid fa-square-pen" style="width:20px;font-size:35px;color:blue;"></i></a></td>
+							<td><a href="/dealerdash/managedelete/{{i.id}}/"><i class="fa-solid fa-trash-can" style="width:20px;font-size:35px;color:red;"></i></a></td>
+						  </tr>
+						{% endfor %}
+						</tbody>
+					 </table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

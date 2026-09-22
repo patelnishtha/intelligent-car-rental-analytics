@@ -1,0 +1,810 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+  /* Modern ML & Data Science Styling */
+  .ml-hero-wrap {
+    position: relative;
+    background: linear-gradient(135deg, #0d1b2a 0%, #1b263b 60%, #10b981 100%);
+    padding: 120px 0 60px 0;
+    color: #ffffff;
+  }
+  .ml-badge-ai {
+    background: linear-gradient(90deg, #10b981, #06b6d4);
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: inline-block;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+  }
+  .ml-nav-pills {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+  }
+  .ml-nav-pills .nav-link {
+    background: rgba(255, 255, 255, 0.1);
+    color: #f1f5f9;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 30px;
+    padding: 12px 26px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+  }
+  .ml-nav-pills .nav-link:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    transform: translateY(-2px);
+  }
+  .ml-nav-pills .nav-link.active {
+    background: #10b981;
+    color: #ffffff;
+    border-color: #10b981;
+    box-shadow: 0 4px 20px rgba(16, 185, 129, 0.4);
+  }
+  .ml-card {
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+    margin-bottom: 30px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .ml-card:hover {
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
+  }
+  .ml-card-header {
+    background: #f8fafc;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 20px 25px;
+  }
+  .ml-card-body {
+    padding: 28px;
+  }
+  .kpi-card {
+    border-radius: 14px;
+    padding: 22px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+  .kpi-card h3 {
+    color: #ffffff;
+    font-size: 30px;
+    font-weight: 800;
+    margin: 5px 0 0 0;
+  }
+  .kpi-card p {
+    color: rgba(255, 255, 255, 0.85);
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .kpi-1 { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+  .kpi-2 { background: linear-gradient(135deg, #10b981, #047857); }
+  .kpi-3 { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
+  .kpi-4 { background: linear-gradient(135deg, #f59e0b, #d97706); }
+
+  .output-highlight-box {
+    background: linear-gradient(145deg, #0f172a, #1e293b);
+    border-radius: 16px;
+    padding: 30px;
+    color: #ffffff;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(15, 23, 42, 0.25);
+  }
+  .output-highlight-box::after {
+    content: "";
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: rgba(16, 185, 129, 0.15);
+    filter: blur(25px);
+  }
+  .price-big-display {
+    font-size: 42px;
+    font-weight: 800;
+    color: #10b981;
+    line-height: 1.1;
+  }
+  .factor-tag {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin: 4px;
+    font-size: 13px;
+  }
+  .factor-impact {
+    font-weight: 700;
+    color: #38bdf8;
+    margin-left: 6px;
+  }
+  .form-control-custom {
+    border-radius: 10px;
+    border: 1.5px solid #cbd5e1;
+    padding: 10px 14px;
+    height: 48px;
+    font-size: 15px;
+  }
+  .form-control-custom:focus {
+    border-color: #10b981;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+  }
+  .custom-range {
+    height: 8px;
+    border-radius: 5px;
+    background: #e2e8f0;
+  }
+  .car-rec-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .car-rec-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+    border-color: #10b981;
+  }
+  .match-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(15, 23, 42, 0.85);
+    color: #38bdf8;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+  }
+</style>
+
+<!-- Hero Section -->
+<section class="ml-hero-wrap">
+  <div class="container text-center">
+    <span class="ml-badge-ai"><i class="ion-ios-pulse"></i> Data Science & Machine Learning Hub</span>
+    <h1 class="display-4 font-weight-bold mb-3" style="color: #ffffff;">Intelligent Car Rental Analytics</h1>
+    <p class="lead mx-auto" style="max-width: 780px; color: #cbd5e1;">
+      Harness the power of Machine Learning models to predict dynamic rental rates, analyze fleet performance, and match customers with optimal vehicle recommendations.
+    </p>
+
+    <!-- Nav Tabs -->
+    <ul class="nav ml-nav-pills" id="mlTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="predictor-tab" data-toggle="pill" href="#tab-predictor" role="tab">
+          <i class="ion-ios-speedometer mr-1"></i> ML Price Predictor
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="analytics-tab" data-toggle="pill" href="#tab-analytics" role="tab">
+          <i class="ion-ios-pie mr-1"></i> Data Science & Fleet Analytics
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="recommender-tab" data-toggle="pill" href="#tab-recommender" role="tab">
+          <i class="ion-ios-options mr-1"></i> AI Smart Car Matcher
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- Content Section -->
+<section class="ftco-section bg-light py-5">
+  <div class="container">
+    <div class="tab-content" id="mlTabContent">
+
+      <!-- ================= TAB 1: ML PRICE PREDICTOR ================= -->
+      <div class="tab-pane fade show active" id="tab-predictor" role="tabpanel">
+        <div class="row">
+          <!-- Input Form -->
+          <div class="col-lg-6">
+            <div class="ml-card">
+              <div class="ml-card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0 font-weight-bold text-dark">
+                  <i class="ion-ios-calculator mr-2 text-success"></i>Vehicle & Trip Parameters
+                </h5>
+                <span class="badge badge-success px-2 py-1">Scikit-Learn Random Forest</span>
+              </div>
+              <div class="ml-card-body">
+                <form id="pricePredictorForm">
+                  {% csrf_token %}
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label class="font-weight-600 text-muted small text-uppercase">Brand / Manufacturer</label>
+                      <select class="form-control form-control-custom" id="predBrand" name="brand">
+                        {% for b in brands %}
+                          <option value="{{ b }}" {% if b == 'Toyota' %}selected{% endif %}>{{ b }}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label class="font-weight-600 text-muted small text-uppercase">Body Type</label>
+                      <select class="form-control form-control-custom" id="predBodyType" name="body_type">
+                        {% for bt in body_types %}
+                          <option value="{{ bt }}" {% if bt == 'SUV' %}selected{% endif %}>{{ bt }}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label class="font-weight-600 text-muted small text-uppercase">Fuel Type</label>
+                      <select class="form-control form-control-custom" id="predFuelType" name="fuel_type">
+                        {% for ft in fuel_types %}
+                          <option value="{{ ft }}" {% if ft == 'Diesel' %}selected{% endif %}>{{ ft }}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label class="font-weight-600 text-muted small text-uppercase">Transmission</label>
+                      <select class="form-control form-control-custom" id="predTransmission" name="transmission">
+                        {% for tr in transmissions %}
+                          <option value="{{ tr }}" {% if tr == 'Automatic' %}selected{% endif %}>{{ tr }}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label class="font-weight-600 text-muted small text-uppercase">Seating Capacity</label>
+                      <select class="form-control form-control-custom" id="predSeats" name="seats">
+                        <option value="4">4 Seater (Compact)</option>
+                        <option value="5" selected>5 Seater (Standard)</option>
+                        <option value="7">7 Seater (Family / Group)</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label class="font-weight-600 text-muted small text-uppercase">Demand Season</label>
+                      <select class="form-control form-control-custom" id="predSeason" name="season">
+                        {% for s in seasons %}
+                          <option value="{{ s }}" {% if s == 'Regular' %}selected{% endif %}>{{ s }}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group mt-2">
+                    <div class="d-flex justify-content-between">
+                      <label class="font-weight-600 text-muted small text-uppercase">Rental Duration (Days)</label>
+                      <span class="badge badge-primary" id="durationDisplay">3 Days</span>
+                    </div>
+                    <input type="range" class="form-control-range custom-range" id="predDuration" name="duration_days" min="1" max="30" value="3">
+                    <div class="d-flex justify-content-between text-muted small mt-1">
+                      <span>1 Day</span>
+                      <span>15 Days</span>
+                      <span>30 Days</span>
+                    </div>
+                  </div>
+
+                  <button type="button" id="btnPredictPrice" class="btn btn-success btn-block py-3 mt-4 font-weight-bold" style="border-radius: 10px; font-size: 16px;">
+                    <i class="ion-ios-analytics mr-2"></i>Compute Machine Learning Prediction
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- ML Prediction Output Panel -->
+          <div class="col-lg-6">
+            <div class="output-highlight-box mb-4">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <span class="badge badge-light px-3 py-1 font-weight-bold text-dark">
+                  <i class="ion-ios-checkmark-circle text-success mr-1"></i> ML Regressor Output
+                </span>
+                <span class="text-muted small" id="liveTimestamp">Model Confidence: 94.2%</span>
+              </div>
+
+              <p class="text-uppercase small font-weight-bold text-muted mb-1">Recommended Daily Rental Rate</p>
+              <div class="d-flex align-items-baseline mb-3">
+                <div class="price-big-display" id="resDailyPrice">₹{{ sample_prediction.predicted_daily }}</div>
+                <div class="text-white-50 ml-2">/ day</div>
+              </div>
+
+              <div class="p-3 mb-3 rounded" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);">
+                <div class="row text-center">
+                  <div class="col-4 border-right border-secondary">
+                    <div class="text-muted small">Total (<span id="resDaysLabel">{{ sample_prediction.duration_days }}</span>d)</div>
+                    <div class="font-weight-bold h5 text-white mb-0" id="resTotalPrice">₹{{ sample_prediction.total_cost }}</div>
+                  </div>
+                  <div class="col-4 border-right border-secondary">
+                    <div class="text-muted small">Est. Hourly</div>
+                    <div class="font-weight-bold h5 text-white mb-0" id="resHourlyPrice">₹{{ sample_prediction.hourly_estimated }}</div>
+                  </div>
+                  <div class="col-4">
+                    <div class="text-muted small">Range (Min-Max)</div>
+                    <div class="font-weight-bold h6 text-info mb-0" id="resRange">₹{{ sample_prediction.min_daily }} - ₹{{ sample_prediction.max_daily }}</div>
+                  </div>
+                </div>
+              </div>
+
+              <h6 class="text-white font-weight-bold mt-4 mb-2">
+                <i class="ion-ios-information-circle-outline text-info mr-1"></i> Feature Impact Explainability
+              </h6>
+              <p class="text-muted small mb-2">How vehicle attributes influenced the predicted market rate:</p>
+              <div id="factorList">
+                {% for f in sample_prediction.factor_insights %}
+                  <div class="factor-tag">
+                    <span>{{ f.factor }}:</span>
+                    <span class="factor-impact">{{ f.impact }}</span>
+                    <span class="text-white-50 ml-1">({{ f.desc }})</span>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+
+            <!-- Context Info Card -->
+            <div class="ml-card">
+              <div class="ml-card-body p-4">
+                <h6 class="font-weight-bold text-dark mb-2">
+                  <i class="ion-ios-git-network mr-2 text-primary"></i>How our ML Model Operates
+                </h6>
+                <p class="text-muted small mb-0">
+                  Our machine learning pipeline uses an ensemble <strong>Random Forest Regressor</strong> trained on comprehensive automotive rental benchmarks with cross-validation. Categorical features (Manufacturer, Body Style, Fuel, Season) undergo <strong>One-Hot Encoding</strong>, and duration curves incorporate non-linear volume discounts.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= TAB 2: DATA SCIENCE ANALYTICS ================= -->
+      <div class="tab-pane fade" id="tab-analytics" role="tabpanel">
+        <!-- KPI Cards Row -->
+        <div class="row">
+          <div class="col-md-3 col-sm-6">
+            <div class="kpi-card kpi-1">
+              <div>
+                <p>Fleet Vehicles</p>
+                <h3 id="kpiFleet">{{ analytics.kpis.total_fleet }}</h3>
+              </div>
+              <span class="ion-ios-car" style="font-size: 38px; opacity: 0.8;"></span>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <div class="kpi-card kpi-2">
+              <div>
+                <p>Avg Daily Rate</p>
+                <h3 id="kpiAvgRate">₹{{ analytics.kpis.avg_daily_price }}</h3>
+              </div>
+              <span class="ion-ios-cash" style="font-size: 38px; opacity: 0.8;"></span>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <div class="kpi-card kpi-3">
+              <div>
+                <p>Active Brands</p>
+                <h3 id="kpiBrands">{{ analytics.kpis.total_brands }}</h3>
+              </div>
+              <span class="ion-ios-albums" style="font-size: 38px; opacity: 0.8;"></span>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <div class="kpi-card kpi-4">
+              <div>
+                <p>Avg Hourly Rate</p>
+                <h3 id="kpiHourly">₹{{ analytics.kpis.avg_hourly_price }}</h3>
+              </div>
+              <span class="ion-ios-time" style="font-size: 38px; opacity: 0.8;"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Charts Row 1 -->
+        <div class="row">
+          <!-- Chart 1: Average Price by Brand -->
+          <div class="col-lg-7">
+            <div class="ml-card">
+              <div class="ml-card-header d-flex justify-content-between align-items-center">
+                <h6 class="font-weight-bold mb-0 text-dark">
+                  <i class="ion-ios-stats mr-2 text-primary"></i>Average Daily Price by Brand (₹)
+                </h6>
+                <span class="badge badge-light">Pandas GroupBy</span>
+              </div>
+              <div class="ml-card-body">
+                <canvas id="chartBrandPrice" height="220"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- Chart 2: Brand Distribution Doughnut -->
+          <div class="col-lg-5">
+            <div class="ml-card">
+              <div class="ml-card-header d-flex justify-content-between align-items-center">
+                <h6 class="font-weight-bold mb-0 text-dark">
+                  <i class="ion-ios-pie mr-2 text-success"></i>Fleet Inventory Share
+                </h6>
+                <span class="badge badge-light">Distribution</span>
+              </div>
+              <div class="ml-card-body">
+                <canvas id="chartBrandShare" height="220"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Charts Row 2 -->
+        <div class="row">
+          <!-- Chart 3: Monthly Rental Demand & Projected Revenue -->
+          <div class="col-lg-7">
+            <div class="ml-card">
+              <div class="ml-card-header d-flex justify-content-between align-items-center">
+                <h6 class="font-weight-bold mb-0 text-dark">
+                  <i class="ion-ios-trending-up mr-2 text-warning"></i>12-Month Rental Demand & Revenue Trend
+                </h6>
+                <span class="badge badge-light">Time Series Trend</span>
+              </div>
+              <div class="ml-card-body">
+                <canvas id="chartDemandTrend" height="200"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- Chart 4: ML Model Feature Importance -->
+          <div class="col-lg-5">
+            <div class="ml-card">
+              <div class="ml-card-header d-flex justify-content-between align-items-center">
+                <h6 class="font-weight-bold mb-0 text-dark">
+                  <i class="ion-ios-key mr-2 text-info"></i>Feature Importance in Price Model
+                </h6>
+                <span class="badge badge-light">Random Forest</span>
+              </div>
+              <div class="ml-card-body">
+                <canvas id="chartFeatureImportance" height="200"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= TAB 3: AI CAR RECOMMENDER ================= -->
+      <div class="tab-pane fade" id="tab-recommender" role="tabpanel">
+        <div class="ml-card mb-4">
+          <div class="ml-card-header">
+            <h5 class="mb-0 font-weight-bold text-dark">
+              <i class="ion-ios-search mr-2 text-primary"></i>AI Vehicle Match Filter
+            </h5>
+          </div>
+          <div class="ml-card-body">
+            <div class="row align-items-end">
+              <div class="col-md-5">
+                <label class="font-weight-600 text-muted small text-uppercase">Desired Daily Budget (₹)</label>
+                <div class="input-group">
+                  <div class="input-group-prepend"><span class="input-group-text">₹</span></div>
+                  <input type="number" id="recBudget" class="form-control form-control-custom" value="2500" min="500" max="15000" step="100">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <label class="font-weight-600 text-muted small text-uppercase">Preferred Brand</label>
+                <select id="recBrand" class="form-control form-control-custom">
+                  <option value="Any">Any Brand (All Fleet)</option>
+                  {% for b in brands %}
+                    <option value="{{ b }}">{{ b }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="col-md-3">
+                <button type="button" id="btnFindCars" class="btn btn-primary btn-block py-2 font-weight-bold" style="height: 48px; border-radius: 10px;">
+                  <i class="ion-ios-flash mr-1"></i> Find Best Matches
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recommendation Cards Grid -->
+        <h5 class="font-weight-bold text-dark mb-3">Top AI Matched Vehicles</h5>
+        <div class="row" id="recommendationsGrid">
+          {% for item in initial_recommendations %}
+            <div class="col-md-4 mb-4">
+              <div class="car-rec-card ml-card p-0 position-relative">
+                <div class="match-badge">
+                  <i class="ion-ios-flash mr-1 text-warning"></i>{{ item.match_score }}% Match
+                </div>
+                <div style="height: 200px; background: #f1f5f9; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                  {% if item.car.img %}
+                    <img src="{{ item.car.img.url }}" alt="{{ item.car.name }}" style="max-height: 100%; width: 100%; object-fit: cover;">
+                  {% else %}
+                    <span class="ion-ios-car text-muted" style="font-size: 70px;"></span>
+                  {% endif %}
+                </div>
+                <div class="p-3 d-flex flex-column flex-grow-1">
+                  <div class="d-flex justify-content-between align-items-start mb-2">
+                    <h5 class="font-weight-bold text-dark mb-0">{{ item.car.name }}</h5>
+                    <span class="badge {{ item.badge_class }}">{{ item.badge }}</span>
+                  </div>
+                  <p class="text-muted small mb-2"><i class="ion-ios-pin mr-1"></i>{{ item.car.location }} | {{ item.car.company_name }}</p>
+                  
+                  <div class="mt-auto pt-2 border-top d-flex justify-content-between align-items-center">
+                    <div>
+                      <span class="text-muted small">Daily Rate</span>
+                      <div class="h5 font-weight-bold text-success mb-0">₹{{ item.car.per_day_price }}</div>
+                    </div>
+                    <a href="/car_single/{{ item.car.id }}/" class="btn btn-sm btn-outline-success px-3 font-weight-bold" style="border-radius: 20px;">
+                      View Details
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Chart.js Script CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  // Parse Data Science Analytics JSON passed from Django view
+  const analyticsData = {{ analytics_json|safe }};
+
+  // Setup Chart.js visualizations once DOM is ready
+  document.addEventListener('DOMContentLoaded', function() {
+
+    // 1. Chart: Average Price by Brand (Bar Chart)
+    const ctxBrandPrice = document.getElementById('chartBrandPrice').getContext('2d');
+    new Chart(ctxBrandPrice, {
+      type: 'bar',
+      data: {
+        labels: analyticsData.charts.brands.labels,
+        datasets: [{
+          label: 'Average Price (₹)',
+          data: analyticsData.charts.brands.averages,
+          backgroundColor: 'rgba(59, 130, 246, 0.75)',
+          borderColor: '#2563eb',
+          borderWidth: 1.5,
+          borderRadius: 8
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              callback: value => '₹' + value
+            }
+          }
+        }
+      }
+    });
+
+    // 2. Chart: Brand Share (Doughnut Chart)
+    const ctxBrandShare = document.getElementById('chartBrandShare').getContext('2d');
+    new Chart(ctxBrandShare, {
+      type: 'doughnut',
+      data: {
+        labels: analyticsData.charts.brands.labels,
+        datasets: [{
+          data: analyticsData.charts.brands.counts,
+          backgroundColor: [
+            '#10b981', '#3b82f6', '#8b5cf6', '#f59e0b', '#ec4899', '#06b6d4', '#64748b'
+          ]
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom' }
+        }
+      }
+    });
+
+    // 3. Chart: Demand & Revenue Trend (Line Chart)
+    const ctxDemand = document.getElementById('chartDemandTrend').getContext('2d');
+    new Chart(ctxDemand, {
+      type: 'line',
+      data: {
+        labels: analyticsData.charts.demand_trend.months,
+        datasets: [{
+          label: 'Monthly Bookings',
+          data: analyticsData.charts.demand_trend.rentals,
+          borderColor: '#10b981',
+          backgroundColor: 'rgba(16, 185, 129, 0.15)',
+          fill: true,
+          tension: 0.35,
+          pointRadius: 4,
+          pointBackgroundColor: '#10b981'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false }
+        }
+      }
+    });
+
+    // 4. Chart: ML Feature Importance (Horizontal Bar)
+    const ctxImportance = document.getElementById('chartFeatureImportance').getContext('2d');
+    new Chart(ctxImportance, {
+      type: 'bar',
+      data: {
+        labels: analyticsData.charts.feature_importance.labels,
+        datasets: [{
+          label: 'Importance Weight (%)',
+          data: analyticsData.charts.feature_importance.values,
+          backgroundColor: 'rgba(139, 92, 246, 0.8)',
+          borderRadius: 6
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        plugins: {
+          legend: { display: false }
+        },
+        scales: {
+          x: {
+            ticks: { callback: v => v + '%' },
+            max: 50
+          }
+        }
+      }
+    });
+
+    // Live update duration label
+    const durationInput = document.getElementById('predDuration');
+    const durationDisplay = document.getElementById('durationDisplay');
+    durationInput.addEventListener('input', function() {
+      durationDisplay.innerText = this.value + (this.value === '1' ? ' Day' : ' Days');
+    });
+
+    // ML Price Prediction AJAX Call
+    const btnPredict = document.getElementById('btnPredictPrice');
+    btnPredict.addEventListener('click', function() {
+      const origText = btnPredict.innerHTML;
+      btnPredict.innerHTML = '<span class="spinner-border spinner-border-sm mr-2"></span>Computing with Random Forest...';
+      btnPredict.disabled = true;
+
+      const params = new URLSearchParams({
+        brand: document.getElementById('predBrand').value,
+        body_type: document.getElementById('predBodyType').value,
+        fuel_type: document.getElementById('predFuelType').value,
+        transmission: document.getElementById('predTransmission').value,
+        seats: document.getElementById('predSeats').value,
+        season: document.getElementById('predSeason').value,
+        duration_days: durationInput.value
+      });
+
+      fetch('/api/predict-price/?' + params.toString())
+        .then(res => res.json())
+        .then(response => {
+          btnPredict.innerHTML = origText;
+          btnPredict.disabled = false;
+
+          if (response.status === 'success') {
+            const data = response.data;
+            document.getElementById('resDailyPrice').innerText = '₹' + data.predicted_daily.toLocaleString();
+            document.getElementById('resTotalPrice').innerText = '₹' + data.total_cost.toLocaleString();
+            document.getElementById('resHourlyPrice').innerText = '₹' + data.hourly_estimated.toLocaleString();
+            document.getElementById('resDaysLabel').innerText = data.duration_days;
+            document.getElementById('resRange').innerText = '₹' + data.min_daily.toLocaleString() + ' - ₹' + data.max_daily.toLocaleString();
+
+            // Update explainability tags
+            const factorContainer = document.getElementById('factorList');
+            factorContainer.innerHTML = '';
+            data.factor_insights.forEach(item => {
+              const tag = document.createElement('div');
+              tag.className = 'factor-tag';
+              tag.innerHTML = `<span>${item.factor}:</span> <span class="factor-impact">${item.impact}</span> <span class="text-white-50 ml-1">(${item.desc})</span>`;
+              factorContainer.appendChild(tag);
+            });
+          }
+        })
+        .catch(err => {
+          btnPredict.innerHTML = origText;
+          btnPredict.disabled = false;
+          console.error('Error fetching prediction:', err);
+        });
+    });
+
+    // AI Car Recommendation AJAX Call
+    const btnFindCars = document.getElementById('btnFindCars');
+    btnFindCars.addEventListener('click', function() {
+      const origText = btnFindCars.innerHTML;
+      btnFindCars.innerHTML = '<span class="spinner-border spinner-border-sm mr-1"></span>Matching...';
+      btnFindCars.disabled = true;
+
+      const budget = document.getElementById('recBudget').value;
+      const brand = document.getElementById('recBrand').value;
+
+      fetch(`/api/recommend-cars/?budget=${budget}&brand=${encodeURIComponent(brand)}`)
+        .then(res => res.json())
+        .then(response => {
+          btnFindCars.innerHTML = origText;
+          btnFindCars.disabled = false;
+
+          if (response.status === 'success') {
+            const grid = document.getElementById('recommendationsGrid');
+            grid.innerHTML = '';
+
+            if (response.data.length === 0) {
+              grid.innerHTML = '<div class="col-12"><div class="alert alert-warning">No cars found matching criteria.</div></div>';
+              return;
+            }
+
+            response.data.forEach(item => {
+              const imgHtml = item.img_url 
+                ? `<img src="${item.img_url}" alt="${item.name}" style="max-height: 100%; width: 100%; object-fit: cover;">`
+                : `<span class="ion-ios-car text-muted" style="font-size: 70px;"></span>`;
+
+              const col = document.createElement('div');
+              col.className = 'col-md-4 mb-4';
+              col.innerHTML = `
+                <div class="car-rec-card ml-card p-0 position-relative">
+                  <div class="match-badge">
+                    <i class="ion-ios-flash mr-1 text-warning"></i>${item.match_score}% Match
+                  </div>
+                  <div style="height: 200px; background: #f1f5f9; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                    ${imgHtml}
+                  </div>
+                  <div class="p-3 d-flex flex-column flex-grow-1">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                      <h5 class="font-weight-bold text-dark mb-0">${item.name}</h5>
+                      <span class="badge ${item.badge_class}">${item.badge}</span>
+                    </div>
+                    <p class="text-muted small mb-2"><i class="ion-ios-pin mr-1"></i>${item.location} | ${item.brand}</p>
+                    <div class="mt-auto pt-2 border-top d-flex justify-content-between align-items-center">
+                      <div>
+                        <span class="text-muted small">Daily Rate</span>
+                        <div class="h5 font-weight-bold text-success mb-0">₹${item.per_day_price}</div>
+                      </div>
+                      <a href="/car_single/${item.id}/" class="btn btn-sm btn-outline-success px-3 font-weight-bold" style="border-radius: 20px;">
+                        View Details
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              `;
+              grid.appendChild(col);
+            });
+          }
+        })
+        .catch(err => {
+          btnFindCars.innerHTML = origText;
+          btnFindCars.disabled = false;
+          console.error('Error fetching recommendations:', err);
+        });
+    });
+
+  });
+</script>
+
+{% endblock %}

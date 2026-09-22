@@ -1,0 +1,422 @@
+{% extends 'cusbase.html' %}
+{% load static %}
+ {% block content %}
+    <div class="hero-wrap ftco-degree-bg" style="background-image: url({% static '/images/bg_1.jpg' %});" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text justify-content-start align-items-center justify-content-center">
+          <div class="col-lg-8 ftco-animate">
+          	<div class="text w-100 text-center mb-md-5 pb-md-5">
+	            <h1 class="mb-4">Fast &amp; Easy Way To Rent A Car</h1>
+	            <p style="font-size: 18px;">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts</p>
+<!--	            <a href="https://vimeo.com/45830194" class="icon-wrap popup-vimeo d-flex align-items-center mt-4 justify-content-center">-->
+<!--	            	<div class="icon d-flex align-items-center justify-content-center">-->
+<!--	            		<span class="ion-ios-play"></span>-->
+<!--	            	</div>-->
+<!--	            	<div class="heading-title ml-5">-->
+<!--		            	<span>Easy steps for renting a car</span>-->
+<!--	            	</div>-->
+<!--	            </a>-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!--     <section class="ftco-section ftco-no-pt bg-light">-->
+<!--    	<div class="container">-->
+<!--    		<div class="row no-gutters">-->
+<!--    			<div class="col-md-12	featured-top">-->
+<!--    				<div class="row no-gutters">-->
+<!--	  					<div class="col-md-4 d-flex align-items-center">-->
+<!--	  						<form action="#" class="request-form ftco-animate bg-primary">-->
+<!--		          		<h2>Make your trip</h2>-->
+<!--			    				<div class="form-group">-->
+<!--			    					<label for="" class="label">Pick-up location</label>-->
+<!--			    					<input type="text" class="form-control" placeholder="City, Airport, Station, etc">-->
+<!--			    				</div>-->
+<!--			    				<div class="form-group">-->
+<!--			    					<label for="" class="label">Drop-off location</label>-->
+<!--			    					<input type="text" class="form-control" placeholder="City, Airport, Station, etc">-->
+<!--			    				</div>-->
+<!--			    				<div class="d-flex">-->
+<!--			    					<div class="form-group mr-2">-->
+<!--			                <label for="" class="label">Pick-up date</label>-->
+<!--			                <input type="text" class="form-control" id="book_pick_date" placeholder="Date">-->
+<!--			              </div>-->
+<!--			              <div class="form-group ml-2">-->
+<!--			                <label for="" class="label">Drop-off date</label>-->
+<!--			                <input type="text" class="form-control" id="book_off_date" placeholder="Date">-->
+<!--			              </div>-->
+<!--		              </div>-->
+<!--		              <div class="form-group">-->
+<!--		                <label for="" class="label">Pick-up time</label>-->
+<!--		                <input type="text" class="form-control" id="time_pick" placeholder="Time">-->
+<!--		              </div>-->
+<!--			            <div class="form-group">-->
+<!--			              <input type="submit" value="Rent A Car Now" class="btn btn-secondary py-3 px-4">-->
+<!--			            </div>-->
+<!--			    			</form>-->
+<!--	  					</div>-->
+<!--	  					<div class="col-md-8 d-flex align-items-center">-->
+<!--	  						<div class="services-wrap rounded-right w-100">-->
+<!--	  							<h3 class="heading-section mb-4">Better Way to Rent Your Perfect Cars</h3>-->
+<!--	  							<div class="row d-flex mb-4">-->
+<!--					          <div class="col-md-4 d-flex align-self-stretch ftco-animate">-->
+<!--					            <div class="services w-100 text-center">-->
+<!--				              	<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-route"></span></div>-->
+<!--				              	<div class="text w-100">-->
+<!--					                <h3 class="heading mb-2">Choose Your Pickup Location</h3>-->
+<!--				                </div>-->
+<!--					            </div>      -->
+<!--					          </div>-->
+<!--					          <div class="col-md-4 d-flex align-self-stretch ftco-animate">-->
+<!--					            <div class="services w-100 text-center">-->
+<!--				              	<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-handshake"></span></div>-->
+<!--				              	<div class="text w-100">-->
+<!--					                <h3 class="heading mb-2">Select the Best Deal</h3>-->
+<!--					              </div>-->
+<!--					            </div>      -->
+<!--					          </div>-->
+<!--					          <div class="col-md-4 d-flex align-self-stretch ftco-animate">-->
+<!--					            <div class="services w-100 text-center">-->
+<!--				              	<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-rent"></span></div>-->
+<!--				              	<div class="text w-100">-->
+<!--					                <h3 class="heading mb-2">Reserve Your Rental Car</h3>-->
+<!--					              </div>-->
+<!--					            </div>      -->
+<!--					          </div>-->
+<!--					        </div>-->
+<!--					        <p><a href="#" class="btn btn-primary py-3 px-4">Reserve Your Perfect Car</a></p>-->
+<!--	  						</div>-->
+<!--	  					</div>-->
+<!--	  				</div>-->
+<!--				</div>-->
+<!--  		</div>-->
+<!--    </section>-->
+
+
+    <section class="ftco-section ftco-no-pt bg-light">
+    	<div class="container">
+    		<div class="row justify-content-center">
+          <div class="col-md-12 heading-section text-center ftco-animate mb-5">
+          	<span class="subheading">What we offer</span>
+            <h2 class="mb-2">Featured Vehicles</h2>
+          </div>
+        </div>
+    		<div class="row">
+    			<div class="col-md-12">
+    				<div class="carousel-car owl-carousel">
+                         {% for i in s1 %}
+    					<div class="item">
+    						<div class="car-wrap rounded ftco-animate">
+		    					<div class="img rounded d-flex align-items-end" style="background-image: url({{i.img.url}});">
+		    					</div>
+		    					<div class="text">
+		    						<h2 class="mb-0"><a href="#">{{i.name}}</a></h2>
+		    						<div class="d-flex mb-3">
+			    						<span class="cat">{{i.company_name}}</span>
+			    						<p class="price ml-auto">{{i.per_day_price}} <span>/day</span></p>
+		    						</div>
+		    						{% if i.id in booked %}
+                                <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-danger py-2 mr-1">Booked</a></p>
+
+                           {% else %}
+    						    <p class="d-flex mb-0 d-block"><a href="/customer/custrip_form/{{i.id}}/" class="btn btn-primary py-2 mr-1">Book now</a>
+                                <a href="/customer/cuscar_single/{{i.id}}/" class="btn btn-secondary py-2 ml-1">Details</a></p>
+    					 {% endif %}
+		    					</div>
+		    				</div>
+    					</div>
+                        {% endfor %}
+<!--    					<div class="item">-->
+<!--    						<div class="car-wrap rounded ftco-animate">-->
+<!--		    					<div class="img rounded d-flex align-items-end" style="background-image: url ({% static '/images/car-2.jpg' %});">-->
+<!--		    					</div>-->
+<!--		    					<div class="text">-->
+<!--		    						<h2 class="mb-0"><a href="#">Mercedes Grand Sedan</a></h2>-->
+<!--		    						<div class="d-flex mb-3">-->
+<!--			    						<span class="cat">Cheverolet</span>-->
+<!--			    						<p class="price ml-auto">$500 <span>/day</span></p>-->
+<!--		    						</div>-->
+<!--		    						<p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="#" class="btn btn-secondary py-2 ml-1">Details</a></p>-->
+<!--		    					</div>-->
+<!--		    				</div>-->
+<!--    					</div>-->
+<!--    					<div class="item">-->
+<!--    						<div class="car-wrap rounded ftco-animate">-->
+<!--		    					<div class="img rounded d-flex align-items-end" style="background-image: url({% static '/images/car-3.jpg' %});">-->
+<!--		    					</div>-->
+<!--		    					<div class="text">-->
+<!--		    						<h2 class="mb-0"><a href="#">Mercedes Grand Sedan</a></h2>-->
+<!--		    						<div class="d-flex mb-3">-->
+<!--			    						<span class="cat">Cheverolet</span>-->
+<!--			    						<p class="price ml-auto">$500 <span>/day</span></p>-->
+<!--		    						</div>-->
+<!--		    						<p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="#" class="btn btn-secondary py-2 ml-1">Details</a></p>-->
+<!--		    					</div>-->
+<!--		    				</div>-->
+<!--    					</div>-->
+<!--    					<div class="item">-->
+<!--    						<div class="car-wrap rounded ftco-animate">-->
+<!--		    					<div class="img rounded d-flex align-items-end" style="background-image: url({% static '/images/car-4.jpg' %});">-->
+<!--		    					</div>-->
+<!--		    					<div class="text">-->
+<!--		    						<h2 class="mb-0"><a href="#">Mercedes Grand Sedan</a></h2>-->
+<!--		    						<div class="d-flex mb-3">-->
+<!--			    						<span class="cat">Cheverolet</span>-->
+<!--			    						<p class="price ml-auto">$500 <span>/day</span></p>-->
+<!--		    						</div>-->
+<!--		    						<p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="#" class="btn btn-secondary py-2 ml-1">Details</a></p>-->
+<!--		    					</div>-->
+<!--		    				</div>-->
+<!--    					</div>-->
+<!--    				</div>-->
+    			</div>
+    		        </div>
+    	        </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ftco-section ftco-about">
+			<div class="container">
+				<div class="row no-gutters">
+					<div class="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center" style="background-image: url( {% static '/images/about.jpg' %});">
+					</div>
+					<div class="col-md-6 wrap-about ftco-animate">
+	          <div class="heading-section heading-section-white pl-md-5">
+	          	<span class="subheading">About us</span>
+	            <h2 class="mb-4">Welcome to Car Rental</h2>
+
+	            <p>This Car Rental E-Commerce Site is an advanced web application designed to facilitate the booking and management of rental vehicles through a seamless online platform. Developed using Python and Django, this project aims to provide a robust, user-friendly system for both customers and administrators.</p>
+	            <p>As the demand for convenient and flexible transportation options continues to rise, our solution aims to bridge the gap between customers and vehicle rental services. The site is crafted to handle various aspects of the rental process, from browsing available cars to managing bookings and processing payments, all within a single, integrated system.</p>
+	            <p><strong>Developed by:</strong> Darshan Prajapati, Parv Patel, and Nishtha Patel</p>
+	            <p><a href="/customer/cuscar/" class="btn btn-primary py-3 px-4">Search Vehicle</a></p>
+	          </div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="ftco-section">
+			<div class="container">
+				<div class="row justify-content-center mb-5">
+          <div class="col-md-7 text-center heading-section ftco-animate">
+          	<span class="subheading">Services</span>
+            <h2 class="mb-3">Our Latest Services</h2>
+          </div>
+        </div>
+				<div class="row">
+					<div class="col-md-3">
+						<div class="services services-2 w-100 text-center">
+            	<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-wedding-car"></span></div>
+            	<div class="text w-100">
+                <h3 class="heading mb-2">Wedding Ceremony</h3>
+                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+              </div>
+            </div>
+					</div>
+					<div class="col-md-3">
+						<div class="services services-2 w-100 text-center">
+            	<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-transportation"></span></div>
+            	<div class="text w-100">
+                <h3 class="heading mb-2">City Transfer</h3>
+                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+              </div>
+            </div>
+					</div>
+					<div class="col-md-3">
+						<div class="services services-2 w-100 text-center">
+            	<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-car"></span></div>
+            	<div class="text w-100">
+                <h3 class="heading mb-2">Airport Transfer</h3>
+                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+              </div>
+            </div>
+					</div>
+					<div class="col-md-3">
+						<div class="services services-2 w-100 text-center">
+            	<div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-transportation"></span></div>
+            	<div class="text w-100">
+                <h3 class="heading mb-2">Whole City Tour</h3>
+                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+              </div>
+            </div>
+					</div>
+				</div>
+			</div>
+		</section>
+<!--		<section class="ftco-section ftco-intro" style="background-image: url(({% static '/images/bg_3.jpg' %})">-->
+<!--			<div class="overlay"></div>-->
+<!--			<div class="container">-->
+<!--				<div class="row justify-content-end">-->
+<!--					<div class="col-md-6 heading-section heading-section-white ftco-animate">-->
+<!--            <h2 class="mb-3">Do You Want To Earn With Us? So Don't Be Late.</h2>-->
+<!--            <a href="#" class="btn btn-primary btn-lg">Become A Driver</a>-->
+<!--          </div>-->
+<!--				</div>-->
+<!--			</div>-->
+<!--		</section>-->
+
+
+    <section class="ftco-section testimony-section bg-light">
+      <div class="container">
+        <div class="row justify-content-center mb-5">
+          <div class="col-md-7 text-center heading-section ftco-animate">
+          	<span class="subheading">Testimonial</span>
+            <h2 class="mb-3">Happy Clients</h2>
+          </div>
+        </div>
+        <div class="row ftco-animate">
+          <div class="col-md-12">
+            <div class="carousel-testimony owl-carousel ftco-owl">
+              <div class="item">
+                <div class="testimony-wrap rounded text-center py-4 pb-5">
+                  <div class="user-img mb-2" style="background-image: url( {% static '/images/user_icon.png' %})">
+                  </div>
+                  <div class="text pt-4">
+                    <p class="mb-4">""Renting a car from your website was a breeze! Their website was easy to navigate, and I found the perfect vehicle for my trip. The pickup process was smooth, and the car was clean and well-maintained. I had a great experience exploring the city at my own pace. I highly recommend their services!"</p>
+                    <p class="name">Parv Patel</p>
+                    <span class="position">Marketing Manager</span>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap rounded text-center py-4 pb-5">
+                  <div class="user-img mb-2" style="background-image: url( {% static '/images/user_icon.png' %})">
+                  </div>
+                  <div class="text pt-4">
+                    <p class="mb-4">"I recently rented a car from your website for a weekend getaway, and I couldn't be happier with my experience. The booking process was straightforward, and the customer service representative was incredibly helpful. The car was in excellent condition and drove like a dream.Very much recommendable"</p>
+                    <p class="name">Nishtha Patel</p>
+                    <span class="position">Interface Designer</span>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap rounded text-center py-4 pb-5">
+                  <div class="user-img mb-2" style="background-image: url({% static '/images/user_icon.png' %})">
+                  </div>
+                  <div class="text pt-4">
+                    <p class="mb-4">"I will never regret renting a car from your website.I had an incredible experience with you car.It was so smooth and easy.I felt safe and comfortable throughout my journey. The vehicle was clean, comfortable, and reliable. I had no issues at all during my rental period.I'll definitely be renting from them again in the future!"</p>
+                    <p class="name">Ramesh Sharma</p>
+                    <span class="position">Web Developer</span>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap rounded text-center py-4 pb-5">
+                  <div class="user-img mb-2" style="background-image: url( {% static '/images/user_icon.png' %})">
+                  </div>
+                  <div class="text pt-4">
+                    <p class="mb-4">"I was initially hesitant about renting a car for my vacation, but I'm so glad I decided to go with your website. Their online booking system was easy to use, and the car was ready for me when I arrived. I would definitely recommend their services to anyone looking for a hassle-free car rental experience."</p>
+                    <p class="name">Darshan Prajapati</p>
+                    <span class="position">System Analyst</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<!--    <section class="ftco-section">-->
+<!--      <div class="container">-->
+<!--        <div class="row justify-content-center mb-5">-->
+<!--          <div class="col-md-7 heading-section text-center ftco-animate">-->
+<!--          	<span class="subheading">Blog</span>-->
+<!--            <h2>Recent Blog</h2>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="row d-flex">-->
+<!--          <div class="col-md-4 d-flex ftco-animate">-->
+<!--          	<div class="blog-entry justify-content-end">-->
+<!--              <a href="blog-single.html" class="block-20" style="background-image: url('{% static '/images/image_1.jpg' %});">-->
+<!--              </a>-->
+<!--              <div class="text pt-4">-->
+<!--              	<div class="meta mb-3">-->
+<!--                  <div><a href="#">Oct. 29, 2019</a></div>-->
+<!--                  <div><a href="#">Admin</a></div>-->
+<!--                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>-->
+<!--                </div>-->
+<!--                <h3 class="heading mt-2"><a href="#">Why Lead Generation is Key for Business Growth</a></h3>-->
+<!--                <p><a href="#" class="btn btn-primary">Read more</a></p>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="col-md-4 d-flex ftco-animate">-->
+<!--          	<div class="blog-entry justify-content-end">-->
+<!--              <a href="blog-single.html" class="block-20" style="background-image: url(' {% static '/images/image_2.jpg' %});">-->
+<!--              </a>-->
+<!--              <div class="text pt-4">-->
+<!--              	<div class="meta mb-3">-->
+<!--                  <div><a href="#">Oct. 29, 2019</a></div>-->
+<!--                  <div><a href="#">Admin</a></div>-->
+<!--                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>-->
+<!--                </div>-->
+<!--                <h3 class="heading mt-2"><a href="#">Why Lead Generation is Key for Business Growth</a></h3>-->
+<!--                <p><a href="#" class="btn btn-primary">Read more</a></p>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="col-md-4 d-flex ftco-animate">-->
+<!--          	<div class="blog-entry">-->
+<!--              <a href="blog-single.html" class="block-20" style="background-image: url(' {% static '/images/image_3.jpg' %});">-->
+<!--              </a>-->
+<!--              <div class="text pt-4">-->
+<!--              	<div class="meta mb-3">-->
+<!--                  <div><a href="#">Oct. 29, 2019</a></div>-->
+<!--                  <div><a href="#">Admin</a></div>-->
+<!--                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>-->
+<!--                </div>-->
+<!--                <h3 class="heading mt-2"><a href="#">Why Lead Generation is Key for Business Growth</a></h3>-->
+<!--                <p><a href="#" class="btn btn-primary">Read more</a></p>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </section>	-->
+
+    <section class="ftco-counter ftco-section img bg-light" id="section-counter">
+			<div class="overlay"></div>
+    	<div class="container">
+    		<div class="row">
+          <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
+            <div class="block-18">
+              <div class="text text-border d-flex align-items-center">
+                <strong class="number" data-number="60">0</strong>
+                <span>Year <br>Experienced</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
+            <div class="block-18">
+              <div class="text text-border d-flex align-items-center">
+                <strong class="number" data-number="1090">0</strong>
+                <span>Total <br>Cars</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
+            <div class="block-18">
+              <div class="text text-border d-flex align-items-center">
+                <strong class="number" data-number="2590">0</strong>
+                <span>Happy <br>Customers</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
+            <div class="block-18">
+              <div class="text d-flex align-items-center">
+                <strong class="number" data-number="67">0</strong>
+                <span>Total <br>Branches</span>
+              </div>
+            </div>
+          </div>
+        </div>
+    	</div>
+    </section>	
+
+        {% endblock %}
